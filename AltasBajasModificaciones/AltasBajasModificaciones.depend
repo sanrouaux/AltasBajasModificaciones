@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1537298429 source:c:\users\sanro\onedrive\escritorio\altasbajasmodificaciones\altasbajasmodificaciones\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"biblio.h"
+
+1537298378 c:\users\sanro\onedrive\escritorio\altasbajasmodificaciones\altasbajasmodificaciones\biblioteca.h
+
+1537298600 c:\users\sanro\onedrive\escritorio\altasbajasmodificaciones\altasbajasmodificaciones\biblio.h
+
+1537298462 source:c:\users\sanro\onedrive\escritorio\altasbajasmodificaciones\altasbajasmodificaciones\biblio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"biblio.h"
+
