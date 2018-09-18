@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "biblio.h"
-#define T 3
+#define T 2
 
 
 int main()
 {
     eAlumno listaDeAlumnos[T];
-    cargarListaDeAlumnos(listaDeAlumnos, T);
+    //cargarListaDeAlumnosSecuencial(listaDeAlumnos, T);
+    cargarListadeAlumnosAleatoria(listaDeAlumnos, T);
     imprimirListaDeAlumnos(listaDeAlumnos, T);
 
-    int opcion;
+    /*int opcion;
 
     do
     {
@@ -32,15 +33,13 @@ int main()
             mostrarAlumnosConP(listaDeAlumnos, T);
             break;
 
-        /*   case 4:
-        //alumnos con mayor nota
-               break;
+        case 4:
+            mostrarAlumnosNotaMasAlta(listaDeAlumnos, T);
+            break;
 
-
-           case 5:
-        //permite modificar una nota
-               break;*/
-
+        case 5:
+            modificarNota(listaDeAlumnos, T);
+            break;
 
            case 6:
                break;
@@ -49,7 +48,7 @@ int main()
                 printf("Version de prueba. Elegi opciones 1, 2 o 3");
         }
     }
-    while(opcion != 6);
+    while(opcion != 6);*/
 
 
     return 0;

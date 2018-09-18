@@ -11,12 +11,15 @@ typedef struct
 //----PROTOTIPO FUNCIONES---//
 eAlumno cargarAlumno();
 void imprimirAlumno(eAlumno);
-void cargarListaDeAlumnos(eAlumno[], int);
+void cargarListaDeAlumnosSecuencial(eAlumno[], int);
+void cargarAlumnosAleatoriamente(eAlumno[], int);
 void imprimirListaDeAlumnos(eAlumno[], int);
 int menuOpciones();
 void ordenarAlfabeticamente(eAlumno[], int);
 void mostrarAlumnosAprobados(eAlumno[], int);
 void mostrarAlumnosConP(eAlumno[], int);
+void mostrarAlumnosNotaMasAlta(eAlumno[], int);
+void modificarNota(eAlumno[], int);
 
 
 
