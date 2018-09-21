@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
-#include "biblio.h"
+#include "alumno.h"
 #define T 10
 
 
