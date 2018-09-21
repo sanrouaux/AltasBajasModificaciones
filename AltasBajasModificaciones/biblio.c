@@ -4,6 +4,11 @@
 #include "biblio.h"
 
 
+/** \brief
+ *
+ * \return eAlumno
+ *
+ */
 eAlumno cargarAlumno()
 {
     eAlumno alumnoCarga;
@@ -21,12 +26,25 @@ eAlumno cargarAlumno()
 }
 
 
+/** \brief
+ *
+ * \param miAlumno eAlumno
+ * \return void
+ *
+ */
 void imprimirAlumno(eAlumno miAlumno)
 {
     printf("%6d %10s %6d % f8\n", miAlumno.legajo, miAlumno.nombre, miAlumno.nota, miAlumno.altura);
 }
 
 
+/** \brief
+ *
+ * \param listaAlumnos[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void cargarListaDeAlumnosSecuencial(eAlumno listaAlumnos[], int tam)
 {
     int i;
@@ -36,7 +54,14 @@ void cargarListaDeAlumnosSecuencial(eAlumno listaAlumnos[], int tam)
     }
 }
 
-void cargarListadeAlumnosAleatoria(eAlumno listado[], int tam)
+/** \brief
+ *
+ * \param listado[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
+void cargarAlumnosAleatoriamente(eAlumno listado[], int tam)
 {
     int i;
     for(i = 0; i < tam; i++)
@@ -82,32 +107,86 @@ void cargarListadeAlumnosAleatoria(eAlumno listado[], int tam)
 }
 
 
+/** \brief
+ *
+ * \param eAlumno[]
+ * \param int
+ * \return void
+ *
+ */
+void cargarAlumnosEspaciosLibres(eAlumno listado[], int tam)
+{
+    int bandera = 0;
+
+    int i;
+    for(i = 0; i < tam; i++)
+    {
+        if(listado[i].nota == -1)
+        {
+            listado[i] = cargarAlumno();
+            bandera = 1;
+            break;
+        }
+    }
+
+    if(bandera == 0)
+    {
+        printf("Ya no hay espacio");
+    }
+}
+
+
+/** \brief
+ *
+ * \param listaAlumnos[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void imprimirListaDeAlumnos(eAlumno listaAlumnos[], int tam)
 {
     printf("\nLEGAJO     NOMBRE   NOTA     ALTURA\n");
     int i;
     for(i = 0; i < tam; i++)
     {
-        imprimirAlumno(listaAlumnos[i]);
+        if(listaAlumnos[i].nota != -1)
+        {
+            imprimirAlumno(listaAlumnos[i]);
+        }
+
     }
 }
 
+/** \brief
+ *
+ * \return int
+ *
+ */
 int menuOpciones()
 {
     int opcion;
     printf("\n\nMENU DE OPCIONES \n");
-    printf("1. Ordenar alfabeticamente \n");
-    printf("2. Ver alumnos aprobados \n");
-    printf("3. Ver alumnos cuyos nombres comienzan con p \n");
-    printf("4. Alumnos con mayor nota \n");
-    printf("5. Modificar una nota \n");
-    printf("6. Salir \n");
+    printf("1. Dar de alta a un alumno \n");
+    printf("2. Ver listado de alumnos \n");
+    printf("3. Ordenar alfabeticamente \n");
+    printf("4. Ver alumnos aprobados \n");
+    printf("5. Ver alumnos cuyos nombres comienzan con p \n");
+    printf("6. Ver alumnos con la nota mas alta \n");
+    printf("7. Modificar una nota \n");
+    printf("8. Salir \n");
     printf("Ingrese una opcion: ");
     scanf("%d", &opcion);
 
     return opcion;
 }
 
+/** \brief
+ *
+ * \param listadoAlumnos[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void ordenarAlfabeticamente(eAlumno listadoAlumnos[], int tam)
 {
     int i;
@@ -128,6 +207,13 @@ void ordenarAlfabeticamente(eAlumno listadoAlumnos[], int tam)
 }
 
 
+/** \brief
+ *
+ * \param listado[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void mostrarAlumnosAprobados(eAlumno listado[], int tam)
 {
     printf("ALUMNOS APROBADOS: \n");
@@ -142,6 +228,13 @@ void mostrarAlumnosAprobados(eAlumno listado[], int tam)
     }
 }
 
+/** \brief
+ *
+ * \param listado[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void mostrarAlumnosConP(eAlumno listado[], int tam)
 {
     printf("ALUMNOS CUYOS NOMBRES EMPIEZAN CON P: \n");
@@ -157,6 +250,13 @@ void mostrarAlumnosConP(eAlumno listado[], int tam)
 }
 
 
+/** \brief
+ *
+ * \param listado[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void mostrarAlumnosNotaMasAlta(eAlumno listado[], int tam)
 {
     int notaMasAlta;
@@ -183,6 +283,13 @@ void mostrarAlumnosNotaMasAlta(eAlumno listado[], int tam)
 }
 
 
+/** \brief
+ *
+ * \param listado[] eAlumno
+ * \param tam int
+ * \return void
+ *
+ */
 void modificarNota(eAlumno listado[], int tam)
 {
     int legajo;

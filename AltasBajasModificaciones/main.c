@@ -1,18 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #include "biblio.h"
-#define T 2
+#define T 10
 
 
 int main()
 {
     eAlumno listaDeAlumnos[T];
-    //cargarListaDeAlumnosSecuencial(listaDeAlumnos, T);
-    cargarListadeAlumnosAleatoria(listaDeAlumnos, T);
-    imprimirListaDeAlumnos(listaDeAlumnos, T);
 
-    /*int opcion;
+    int i;
+    for(i = 0; i < T; i++)
+    {
+        listaDeAlumnos[i].nota = -1;
+    }
+
+
+    int opcion;
 
     do
     {
@@ -20,35 +25,44 @@ int main()
 
         switch(opcion)
         {
+
         case 1:
+            cargarAlumnosEspaciosLibres(listaDeAlumnos, T);
+            break;
+
+        case 2:
+            imprimirListaDeAlumnos(listaDeAlumnos, T);
+            break;
+
+        case 3:
             ordenarAlfabeticamente(listaDeAlumnos, T);
             imprimirListaDeAlumnos(listaDeAlumnos, T);
             break;
 
-        case 2:
+        case 4:
             mostrarAlumnosAprobados(listaDeAlumnos, T);
             break;
 
-        case 3:
+        case 5:
             mostrarAlumnosConP(listaDeAlumnos, T);
             break;
 
-        case 4:
+        case 6:
             mostrarAlumnosNotaMasAlta(listaDeAlumnos, T);
             break;
 
-        case 5:
+        case 7:
             modificarNota(listaDeAlumnos, T);
             break;
 
-           case 6:
-               break;
+        case 8:
+            break;
 
-            default:
-                printf("Version de prueba. Elegi opciones 1, 2 o 3");
+        default:
+            printf("Version de prueba. Elegi opciones 1, 2 o 3");
         }
     }
-    while(opcion != 6);*/
+    while(opcion != 8);
 
 
     return 0;

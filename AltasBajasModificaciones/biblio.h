@@ -13,6 +13,7 @@ eAlumno cargarAlumno();
 void imprimirAlumno(eAlumno);
 void cargarListaDeAlumnosSecuencial(eAlumno[], int);
 void cargarAlumnosAleatoriamente(eAlumno[], int);
+void cargarAlumnosEspaciosLibres(eAlumno[], int);
 void imprimirListaDeAlumnos(eAlumno[], int);
 int menuOpciones();
 void ordenarAlfabeticamente(eAlumno[], int);
