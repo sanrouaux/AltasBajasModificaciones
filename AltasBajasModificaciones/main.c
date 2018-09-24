@@ -9,23 +9,16 @@
 int main()
 {
     eAlumno listaDeAlumnos[T];
-
-    int i;
-    for(i = 0; i < T; i++)
-    {
-        listaDeAlumnos[i].nota = -1;
-    }
-
+    inicializaLista(listaDeAlumnos, T);
+    inicializaAlumnos(listaDeAlumnos);
 
     int opcion;
-
     do
     {
         opcion = menuOpciones();
 
         switch(opcion)
         {
-
         case 1:
             cargarAlumnosEspaciosLibres(listaDeAlumnos, T);
             break;
@@ -56,6 +49,10 @@ int main()
             break;
 
         case 8:
+
+            break;
+
+        case 9:
             break;
 
         default:
