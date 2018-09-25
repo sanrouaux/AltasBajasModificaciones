@@ -1,5 +1,5 @@
 #define OCUPADO 1
-#define VACIO -1
+#define VACIO 0
 
 
 //-----DEFINICION DE ESTRUCTURAS-----//
@@ -14,8 +14,9 @@ typedef struct
 
 
 //----PROTOTIPO FUNCIONES---//
-void inicializaAlumnos(eAlumno[]);
-void inicializaLista(eAlumno[], int);
+void inicializaEstadoVacio(eAlumno[], int);
+void cargaDatosAlumnos(eAlumno[]);
+int menuOpciones();
 eAlumno cargarAlumno();
 void imprimirAlumno(eAlumno);
 void cargarListaDeAlumnosSecuencial(eAlumno[], int);
@@ -23,13 +24,12 @@ void cargarAlumnosAleatoriamente(eAlumno[], int);
 int buscaEspacioLibre(eAlumno[], int);
 void cargarAlumnosEspaciosLibres(eAlumno[], int);
 void imprimirListaDeAlumnos(eAlumno[], int);
-int menuOpciones();
 void ordenarAlfabeticamente(eAlumno[], int);
 void mostrarAlumnosAprobados(eAlumno[], int);
 void mostrarAlumnosConP(eAlumno[], int);
 void mostrarAlumnosNotaMasAlta(eAlumno[], int);
 void modificarNota(eAlumno[], int);
-int
+void bajaAlumno(eAlumno[], int);
 
 
 

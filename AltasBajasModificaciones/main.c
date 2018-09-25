@@ -9,8 +9,8 @@
 int main()
 {
     eAlumno listaDeAlumnos[T];
-    inicializaLista(listaDeAlumnos, T);
-    inicializaAlumnos(listaDeAlumnos);
+    inicializaEstadoVacio(listaDeAlumnos, T);
+    cargaDatosAlumnos(listaDeAlumnos);
 
     int opcion;
     do
@@ -49,17 +49,19 @@ int main()
             break;
 
         case 8:
-
+            bajaAlumno(listaDeAlumnos, T);
             break;
 
         case 9:
             break;
 
         default:
-            printf("Version de prueba. Elegi opciones 1, 2 o 3");
+            printf("Elija una opcion valida");
         }
+        system("pause");
+        system("cls");
     }
-    while(opcion != 8);
+    while(opcion != 9);
 
 
     return 0;

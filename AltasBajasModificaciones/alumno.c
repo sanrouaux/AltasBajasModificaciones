@@ -3,28 +3,28 @@
 #include <string.h>
 #include "alumno.h"
 
-void inicializaAlumnos(eAlumno listado[]) // Permite que haya datos cargados cuando iniciamos el programa
+void cargaDatosAlumnos(eAlumno listado[]) // Permite que haya datos cargados cuando iniciamos el programa
 {
     int legajo[3] = {1234,6576,7889};
-    char nombre[3][21] = {Juan, Maria, Pedro};
+    char nombre[3][21] = {"Zulma", "pedro", "ana"};
     int nota[3] = {2,5,9};
     float altura[3] = {1.56, 1.78, 1.9};
 
     int i;
-    for(i = 0, i < 3; i++)
+    for(i = 0; i < 3; i++)
     {
         listado[i].legajo = legajo[i];
-        listado[i].nombre = nombre[i];
+        strcpy(listado[i].nombre, nombre[i]);
         listado[i].nota = nota[i];
         listado[i].altura = altura[i];
-        listado[i].estado = 1;
+        listado[i].estado = OCUPADO;
     }
 
 }
 
 
 
-void inicializaLista(eAlumno listado[], int tam)
+void inicializaEstadoVacio(eAlumno listado[], int tam)
 {
     int i;
     for(i = 0; i < tam; i++)
@@ -116,7 +116,8 @@ void cargarAlumnosAleatoriamente(eAlumno listado[], int tam)
 
 int buscaEspacioLibre(eAlumno listado[], int tam)
 {
-    int indice = -1;
+    int indice;
+    indice = -1;
     int i;
     for(i = 0; i < tam; i++)
     {
@@ -133,28 +134,28 @@ int buscaEspacioLibre(eAlumno listado[], int tam)
 void cargarAlumnosEspaciosLibres(eAlumno listado[], int tam)
 {
     int indice;
-    indice = buscaEspacioLibre(listado, tam);
+    indice = buscaEspacioLibre(listado, tam);   // Llama a la funcion buscarEspacioLibre
 
     if(indice != -1)
     {
-        listado[indice] = cargarAlumno();
+        listado[indice] = cargarAlumno();   // Llama a la funcion cargarAlumno
     }
     else
     {
-        printf("Ya no hay espacio");
+        printf("No hay espacio disponible");
     }
 }
 
 
-void imprimirListaDeAlumnos(eAlumno listaAlumnos[], int tam)
+void imprimirListaDeAlumnos(eAlumno listado[], int tam)
 {
     printf("\nLEGAJO     NOMBRE   NOTA     ALTURA\n");
     int i;
     for(i = 0; i < tam; i++)
     {
-        if(listaAlumnos[i].estado != VACIO)
+        if(listado[i].estado != VACIO)
         {
-            imprimirAlumno(listaAlumnos[i]);
+            imprimirAlumno(listado[i]);
         }
 
     }
@@ -164,7 +165,7 @@ void imprimirListaDeAlumnos(eAlumno listaAlumnos[], int tam)
 int menuOpciones()
 {
     int opcion;
-    printf("\n\nMENU DE OPCIONES \n");
+    printf("MENU DE OPCIONES \n");
     printf("1. Dar de alta a un alumno \n");
     printf("2. Ver listado de alumnos \n");
     printf("3. Ordenar alfabeticamente \n");
@@ -172,7 +173,8 @@ int menuOpciones()
     printf("5. Ver alumnos cuyos nombres comienzan con p \n");
     printf("6. Ver alumnos con la nota mas alta \n");
     printf("7. Modificar una nota \n");
-    printf("8. Salir \n");
+    printf("8. Dar de baja a un alumno \n");
+    printf("9. Salir \n");
     printf("Ingrese una opcion: ");
     scanf("%d", &opcion);
 
@@ -180,7 +182,7 @@ int menuOpciones()
 }
 
 
-void ordenarAlfabeticamente(eAlumno listadoAlumnos[], int tam)
+void ordenarAlfabeticamente(eAlumno listado[], int tam)
 {
     int i;
     int j;
@@ -189,13 +191,13 @@ void ordenarAlfabeticamente(eAlumno listadoAlumnos[], int tam)
     for(i = 1; i < tam; i++)
     {
         j = i-1;
-        aux = listadoAlumnos[i];
-        while(j>=0 && strcmp(listadoAlumnos[j].nombre, aux.nombre)>0)
+        aux = listado[i];
+        while(j>=0 && strcmp(listado[j].nombre, aux.nombre)>0)
         {
-            listadoAlumnos[j+1] = listadoAlumnos[j];
+            listado[j+1] = listado[j];
             j--;
         }
-        listadoAlumnos[j+1]= aux;
+        listado[j+1]= aux;
     }
 }
 
@@ -207,7 +209,7 @@ void mostrarAlumnosAprobados(eAlumno listado[], int tam)
     int i;
     for(i = 0; i < tam; i++)
     {
-        if(listado[i].nota > 6)
+        if(listado[i].estado == OCUPADO && listado[i].nota > 6)
         {
             printf("%s \n", listado[i].nombre);
         }
@@ -222,7 +224,7 @@ void mostrarAlumnosConP(eAlumno listado[], int tam)
     int i;
     for(i = 0; i < tam; i++)
     {
-        if(listado[i].nombre[0] == 'p')
+        if(listado[i].estado == OCUPADO && (listado[i].nombre[0] == 'p' || listado[i].nombre[0] == 'P'))
         {
             printf("%s \n", listado[i].nombre);
         }
@@ -234,12 +236,12 @@ void mostrarAlumnosConP(eAlumno listado[], int tam)
 void mostrarAlumnosNotaMasAlta(eAlumno listado[], int tam)
 {
     int notaMasAlta;
-    notaMasAlta = listado[0].nota;
+    notaMasAlta = 0;
 
     int i;
-    for(i = 1; i < tam; i++)
+    for(i = 0; i < tam; i++)
     {
-        if(listado[i].nota > notaMasAlta)
+        if(listado[i].estado == OCUPADO && listado[i].nota > notaMasAlta)
         {
             notaMasAlta = listado[i].nota;
         }
@@ -249,53 +251,80 @@ void mostrarAlumnosNotaMasAlta(eAlumno listado[], int tam)
 
     for(i = 0; i < tam; i++)
     {
-        if(listado[i].nota == notaMasAlta)
+        if(listado[i].estado == OCUPADO && listado[i].nota == notaMasAlta)
         {
             printf("%s \n", listado[i].nombre);
         }
     }
 }
 
-
-
-void modificarNota(eAlumno listado[], int tam)
+int buscarLegajo(eAlumno listado[], int tam)
 {
+    int indice = -1;
     int legajo;
-    int nuevaNota;
-    char confirma;
-    int bandera = 0;
 
     printf("Ingrese el legajo del alumno: ");
     scanf("%d", &legajo);
 
     int i;
-    for(i = 0; i< tam; i++)
+    for(i = 0; i < tam; i++)
     {
-        if(listado[i].estado != VACIO && listado[i].legajo == legajo)
+        if(listado[i].estado == OCUPADO && listado[i].legajo == legajo)
         {
-            printf("Se encontro al alumno: %s \n", listado[i].nombre);
-            printf("Ingrese la nueva nota: ");
-            scanf("%d", &nuevaNota);
-
-            printf("Esta seguro que desea cambiar la nota? s/n");
-            fflush(stdin);
-            scanf("%c", &confirma);
-
-            if(confirma == 's')
-            {
-                listado[i].nota = nuevaNota;
-                printf("La nota ha sido cambiada");
-            }
-            else
-            {
-                printf("No se realizo el cambio de nota");
-            }
-            bandera = 1;
+            indice = i;
             break;
         }
     }
-    if(bandera == 0)
+    return indice;
+}
+
+
+void modificarNota(eAlumno listado[], int tam)
+{
+    int indice;
+    int nuevaNota;
+    char confirma;
+
+    indice = buscarLegajo(listado, tam);
+
+    if(indice != -1)
     {
-        printf("No se encontro un alumno con legajo %d", legajo);
+        printf("Se encontro al alumno: %s \n", listado[indice].nombre);
+        printf("Ingrese la nueva nota: ");
+        scanf("%d", &nuevaNota);
+
+        printf("Esta seguro que desea cambiar la nota? s/n: ");
+        fflush(stdin);
+        scanf("%c", &confirma);
+
+        if(confirma == 's')
+        {
+            listado[indice].nota = nuevaNota;
+            printf("La nota ha sido cambiada\n");
+        }
+        else
+        {
+            printf("No se realizo el cambio de nota\n");
+        }
+    }
+    else
+    {
+        printf("No se encontro el legajo\n");
+    }
+}
+
+
+void bajaAlumno(eAlumno listado[], int tam)
+{
+    int indice;
+    indice = buscarLegajo(listado, tam);
+
+    if(indice != -1)
+    {
+        listado[indice].estado = VACIO;
+    }
+    else
+    {
+        printf("No se encontro el legajo\n");
     }
 }

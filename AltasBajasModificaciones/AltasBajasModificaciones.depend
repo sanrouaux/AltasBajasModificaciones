@@ -15,3 +15,18 @@
 	<string.h>
 	"biblio.h"
 
+1537906539 source:c:\users\sanro\onedrive\escritorio\rouaux\altasbajasmodificaciones\altasbajasmodificaciones\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"alumno.h"
+
+1537906539 c:\users\sanro\onedrive\escritorio\rouaux\altasbajasmodificaciones\altasbajasmodificaciones\alumno.h
+
+1537906700 source:c:\users\sanro\onedrive\escritorio\rouaux\altasbajasmodificaciones\altasbajasmodificaciones\alumno.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alumno.h"
+
